@@ -1,0 +1,82 @@
+import React from "react";
+import {
+  getAdminTransactionStats,
+  getAdminTransactions,
+} from "@/app/actions/admin";
+import {
+  CreditCard,
+  DollarSign,
+  TrendingUp,
+  Activity,
+  AlertOctagon,
+} from "lucide-react";
+import TransactionsTable from "./TransactionsTable";
+import AdminStatCard from "@/components/admin/AdminStatCard";
+
+export default async function AdminTransactionsPage() {
+  const stats = await getAdminTransactionStats();
+  const transactions = await getAdminTransactions();
+
+  return (
+    <div className="space-y-8 p-8 bg-slate-50 min-h-screen">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-display font-bold text-slate-900">
+          Transactions
+        </h1>
+        <p className="text-slate-500 mt-2">
+          Monitor all financial activities, revenue, and payment statuses.
+        </p>
+      </div>
+
+      {/* KPI Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <AdminStatCard
+          title="Total Volume"
+          value={new Intl.NumberFormat("en-GH", {
+            style: "currency",
+            currency: "GHS",
+          }).format(stats.totalVolume)}
+          icon={Activity}
+          trend="Gross processed"
+          trendDirection="neutral"
+        />
+        <AdminStatCard
+          title="Net Revenue"
+          value={new Intl.NumberFormat("en-GH", {
+            style: "currency",
+            currency: "GHS",
+          }).format(stats.netRevenue)}
+          icon={DollarSign}
+          trend="Fees & Commissions"
+          trendDirection="up"
+        />
+        <AdminStatCard
+          title="Success Rate"
+          value={`${stats.successRate.toFixed(1)}%`}
+          icon={TrendingUp}
+          trend="Completion Rate"
+          trendDirection={stats.successRate > 90 ? "up" : "down"}
+        />
+        <AdminStatCard
+          title="Pending Actions"
+          value={stats.pendingCount}
+          icon={AlertOctagon}
+          trend="Needs Attention"
+          trendDirection="neutral"
+          color="amber"
+        />
+      </div>
+
+      {/* Transactions Table */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-slate-900">
+            Recent Transactions
+          </h2>
+        </div>
+        <TransactionsTable transactions={transactions} />
+      </div>
+    </div>
+  );
+}
