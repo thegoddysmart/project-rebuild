@@ -126,7 +126,7 @@ export default async function EventDetailPage({ params }: PageProps) {
     // Check one more case: Is phase ENDED?
     // If Ended and showLiveResults is False, do we show? probably not.
     // If phase is NOMINATION, we definitely hide.
-    visibleCategories = event.categories.map((cat) => ({
+    visibleCategories = event.categories.map((cat: any) => ({
       ...cat,
       candidates: [],
     }));
