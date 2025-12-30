@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "postinstall": "prisma generate",
     "build": "next build",
+    "dev": "next dev",
     "start": "next start",
     "lint": "eslint",
     "db:push": "prisma db push",
