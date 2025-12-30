@@ -7,7 +7,7 @@ import {
   deleteNominationField,
   upsertNominationForm,
 } from "@/app/actions/nomination-form";
-import { NominationFieldType } from "@prisma/client";
+import type { NominationFieldType } from "@prisma/client";
 import {
   Plus,
   Trash2,
@@ -44,7 +44,18 @@ export default function FormBuilder({
     options: "", // Comma sep for now
   });
 
-  const fieldTypes = Object.keys(NominationFieldType);
+  const fieldTypes: NominationFieldType[] = [
+    "TEXT",
+    "TEXTAREA",
+    "NUMBER",
+    "EMAIL",
+    "PHONE",
+    "SELECT",
+    "MULTI_SELECT",
+    "CHECKBOX",
+    "FILE",
+    "URL",
+  ];
 
   const handleToggleActive = async () => {
     try {

@@ -60,8 +60,8 @@ async function reproduce() {
 
       const existingCatIds = existingCategories.map((c) => c.id);
       const incomingCatIds = categories
-        .filter((c: { id?: string }) => c.id)
-        .map((c: { id: string }) => c.id);
+        .filter((c: any) => !!(c as any).id)
+        .map((c: any) => (c as any).id);
       const catsToDelete = existingCatIds.filter(
         (id) => !incomingCatIds.includes(id)
       );

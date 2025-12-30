@@ -12,7 +12,7 @@ import {
   XCircle,
   Clock,
 } from "lucide-react";
-import { NominationStatus } from "@prisma/client";
+import type { NominationStatus } from "@prisma/client";
 
 interface Nomination {
   id: string;
