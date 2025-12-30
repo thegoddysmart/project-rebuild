@@ -2,6 +2,8 @@ import { getAdminProfile } from "@/app/actions/admin";
 import AdminAccountClient from "./AdminAccountClient";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Account Settings | Admin Portal",
   description: "Manage your admin account settings",
