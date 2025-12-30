@@ -147,7 +147,7 @@ export default async function EventDetailPage({ params }: PageProps) {
     showLiveResults: event.showLiveResults,
     showVoteCount: event.showVoteCount,
 
-    ticketTypes: event.ticketTypes.map((ticket) => ({
+    ticketTypes: event.ticketTypes.map((ticket: any) => ({
       ...ticket,
       price: Number(ticket.price),
     })),
