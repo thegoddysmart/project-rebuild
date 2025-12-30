@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 // Helper to expose protected dispatchWebhook
 class WebhookDispatcher extends BaseSimulator {
-  protected providerName = "SIMULATION"; // Generic
+  protected providerName: "APPSN" | "PAYSTACK" | "USSD" = "PAYSTACK"; // Generic
 
   async trigger(input: { event: string; data: any }) {
     await this.dispatchWebhook(input, 0); // Immediate

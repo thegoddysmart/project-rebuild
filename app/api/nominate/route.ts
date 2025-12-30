@@ -23,13 +23,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Fetch Event
+    // 2. Fetch Event and Category
     const event = await prisma.event.findUnique({
       where: { id: eventId },
     });
 
     if (!event) {
       return NextResponse.json({ error: "Event not found" }, { status: 404 });
+    }
+
+    const categoryRecord = await prisma.eventCategory.findFirst({
+      where: {
+        eventId: event.id,
+        name: category,
+      },
+    });
+
+    if (!categoryRecord) {
+      return NextResponse.json(
+        { error: "Category not found" },
+        { status: 400 }
+      );
     }
 
     // 3. Create Nomination Record
@@ -41,7 +55,7 @@ export async function POST(request: NextRequest) {
     const nomination = await prisma.nomination.create({
       data: {
         eventId: event.id,
-        categoryName: category,
+        categoryId: categoryRecord.id,
         nomineeName: stageName, // Using Stage Name as primary name
         nomineeEmail: email,
         nomineePhone: phone,
@@ -51,10 +65,8 @@ export async function POST(request: NextRequest) {
         nominatorName: fullName, // Legal Name
         nominatorEmail: email,
         nominatorPhone: phone,
-        reason: bio,
-        metadata: {
-          socialHandle,
-        },
+        bio: bio,
+        // metadata: socialHandle ? { socialHandle } : {},
         status: "PENDING",
       },
     });

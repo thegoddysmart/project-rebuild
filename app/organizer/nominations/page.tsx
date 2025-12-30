@@ -19,6 +19,11 @@ export default async function NominationsPage() {
       },
     },
     include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
       event: {
         select: {
           id: true,
@@ -62,6 +67,8 @@ export default async function NominationsPage() {
 
     return {
       ...n,
+      categoryName: n.category?.name || "Unknown",
+      reason: n.bio,
       createdAt: n.createdAt.toISOString(),
       reviewedAt: n.reviewedAt?.toISOString() || null,
       updatedAt: n.updatedAt.toISOString(),

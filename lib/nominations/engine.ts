@@ -29,9 +29,12 @@ export async function approveNomination(
     const finalBio =
       nomination.bio || `Candidate for ${nomination.nominationType} nomination`;
 
+    const candidateCode = `C${Math.floor(1000 + Math.random() * 9000)}`; // Simple random code
+
     const candidate = await tx.candidate.create({
       data: {
         categoryId: nomination.categoryId,
+        code: candidateCode,
         name: nomination.nomineeName,
         image: nomination.nomineePhotoUrl,
         bio: finalBio,

@@ -23,14 +23,18 @@ async function run() {
         categories: { select: { id: true, name: true, candidates: true } },
       },
     });
-    console.log("Success! Event:", event?.title);
-    console.log("Categories:", event?.categories.length);
-    if (event?.categories.length > 0) {
-      console.log("Sample Category:", event.categories[0].name);
-      console.log(
-        "Sample Candidate Count:",
-        event.categories[0].candidates.length
-      );
+    if (event) {
+      console.log("Success! Event:", event.title);
+      console.log("Categories:", event.categories.length);
+      if (event.categories.length > 0) {
+        console.log("Sample Category:", event.categories[0].name);
+        console.log(
+          "Sample Candidate Count:",
+          event.categories[0].candidates.length
+        );
+      }
+    } else {
+      console.log("Event not found");
     }
   } catch (e) {
     console.error("DB Error:", e);

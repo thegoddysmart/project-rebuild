@@ -163,8 +163,8 @@ export async function PUT(
       });
       const existingIds = existingTicketTypes.map((t) => t.id);
       const incomingIds = ticketTypes
-        .filter((t: { id?: string }) => t.id)
-        .map((t: { id: string }) => t.id);
+        .filter((t: any) => t.id)
+        .map((t: any) => t.id);
 
       const toDelete = existingIds.filter((eId) => !incomingIds.includes(eId));
       if (toDelete.length > 0) {
@@ -220,8 +220,8 @@ export async function PUT(
 
       const existingCatIds = existingCategories.map((c) => c.id);
       const incomingCatIds = categories
-        .filter((c: { id?: string }) => c.id)
-        .map((c: { id: string }) => c.id);
+        .filter((c: any) => c.id)
+        .map((c: any) => c.id);
       const catsToDelete = existingCatIds.filter(
         (id) => !incomingCatIds.includes(id)
       );

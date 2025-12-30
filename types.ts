@@ -21,7 +21,17 @@ export interface Event {
   image: string;
   date: string;
   votes?: number;
-  status: "Live" | "Upcoming" | "Ended";
+  status:
+    | "Live"
+    | "Upcoming"
+    | "Ended"
+    | "LIVE"
+    | "PUBLISHED"
+    | "DRAFT"
+    | "PENDING_REVIEW"
+    | "PAUSED"
+    | "CANCELLED"
+    | "ARCHIVED";
   price?: string;
   votePrice?: number; // Cost per vote
   location?: string;

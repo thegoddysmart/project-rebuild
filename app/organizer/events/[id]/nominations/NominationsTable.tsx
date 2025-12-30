@@ -59,7 +59,6 @@ export default function NominationsTable({
             <XCircle size={12} /> Rejected
           </span>
         );
-      case "under_review": // Handle potential casing diff if manually typed, though enum is upper
       case "UNDER_REVIEW":
         return (
           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
