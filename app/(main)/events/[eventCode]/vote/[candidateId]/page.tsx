@@ -25,8 +25,8 @@ export default async function VotePage({
 
   // Find candidate in the event's categories
   const candidate = event.categories
-    .flatMap((c) => c.candidates)
-    .find((c) => c.id === candidateId);
+    .flatMap((c: any) => c.candidates)
+    .find((c: any) => c.id === candidateId);
 
   if (!candidate) return notFound();
 
