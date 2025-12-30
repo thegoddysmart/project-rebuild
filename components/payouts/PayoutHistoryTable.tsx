@@ -1,6 +1,6 @@
 "use client";
 
-import { Payout } from "@prisma/client";
+import type { Payout } from "@prisma/client";
 import { format } from "date-fns";
 
 export default function PayoutHistoryTable({ payouts }: { payouts: Payout[] }) {
